@@ -4,15 +4,17 @@ namespace DanciNataliaLab7;
 
 public partial class ListEntryPage : ContentPage
 {
-	public ListEntryPage()
-	{
+    public ListEntryPage()
+    {
         InitializeComponent();
-	}
+    }
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
         mylistView.ItemsSource = await App.Database.GetShopListsAsync();
     }
+
     async void OnShopListAddedClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new ListPage
@@ -20,6 +22,7 @@ public partial class ListEntryPage : ContentPage
             BindingContext = new ShopList()
         });
     }
+
     async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         if (e.SelectedItem != null)
@@ -29,6 +32,6 @@ public partial class ListEntryPage : ContentPage
                 BindingContext = e.SelectedItem as ShopList
             });
         }
-    }
 
+    }
 }
